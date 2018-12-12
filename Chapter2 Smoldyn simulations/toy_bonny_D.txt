@@ -1,0 +1,37 @@
+# Simple bouncing molecules in a 2-D system
+
+graphics opengl
+
+dim 2
+
+boundaries x 0 300 p
+boundaries y 0 300 p
+
+species A
+species B
+
+difc A 0.8
+difc B 0.0
+
+color A red
+color B blue
+
+time_start 0
+time_stop 500
+time_step 0.01
+
+mol 9000 B u u
+
+reaction PushOff A + B -> B 1
+reaction kappa 0 -> A 0.00001
+reaction alpha A -> A + A 0.1
+
+output_files C&D_A.csv	
+
+text_display time A B
+
+cmd B molcountheader C&D_A.csv	
+cmd N 100 molcount C&D_A.csv
+
+end_file
+
