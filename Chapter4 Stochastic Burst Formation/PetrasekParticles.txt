@@ -1,0 +1,52 @@
+# An attempt at a particle based implementation of Petrasek's model.
+
+graphics opengl
+
+dim 2
+
+boundaries x 0 100 p
+boundaries y 0 100 p
+
+species D
+species DE
+species E
+
+display_size E 0
+display_size D 1
+display_size DE 1
+
+difc D 0.1
+difc DE 0.1
+difc E 0.1
+
+display_size E 0
+
+color D red
+color DE black
+color E blue
+
+time_start 0
+time_stop 800
+time_step 0.01
+
+mol 10000 D u u
+mol 10000 DE u u
+mol 10000 E u u
+
+
+reaction spontaneousOn 0 -> D 0.25 
+reaction Combine D + E -> DE 0.1
+reaction CombineRemove DE + E -> E + E 0.1
+
+
+text_display time D DE E
+output_files SpotBifurcationNoSky1.csv	
+cmd B molcountheader SpotBifurcationNoSky1.csv	
+cmd N 100 molcount SpotBifurcationNoSky1.csv
+
+
+end_file
+
+
+
+
